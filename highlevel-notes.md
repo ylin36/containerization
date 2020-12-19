@@ -82,5 +82,5 @@ CMD python /app/app.py
 * docker run my-app:v1
 
 ### Push to registry
-* finally, push the image to a registry sot hat we can contribute it and store it for later use
+* finally, push the image to a registry so that we can contribute it and store it for later use
 * docker push my-app:v1
