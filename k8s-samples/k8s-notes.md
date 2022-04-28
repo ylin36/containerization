@@ -32,3 +32,41 @@ Get service
 ```
 kubectl get service
 ```
+
+Download helm then install
+```
+./get_helm.sh
+helm --help
+```
+
+Use Kind for dev k8s cluster
+```
+kind create cluster
+```
+
+Create a chart (helm package)
+```
+helm create demo2-chart
+```
+
+change the values.yaml, and dryrun the app
+```
+helm install --dry-run --debug demo2-chart demo2-chart
+```
+
+make sure the deployment port is setup correctly in deployment.yaml
+
+Install the helm chart, verify the pod status
+```
+helm install your-app-name your-chart-name
+```
+```
+helm install demo2 demo2-chart
+kubectl get pods
+```
+
+Check status of service. Access internal kubernetes app over the internet by mapping service port to 31111
+```
+kubectl get service
+
+```
