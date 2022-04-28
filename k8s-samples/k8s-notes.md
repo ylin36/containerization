@@ -68,5 +68,10 @@ kubectl get pods
 Check status of service. Access internal kubernetes app over the internet by mapping service port to 31111
 ```
 kubectl get service
+kubectl port-forward svc/your-service-name --address 0.0.0.0 31111:31111
+```
 
+you can use regular portfoward to test a pod/deployment
+```
+kubectl port-forward --address 0.0.0.0 nginx 3000:80 
 ```
