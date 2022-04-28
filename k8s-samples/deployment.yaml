@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: kubernetes-deployment
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            project: kubernetes-project
+    template:
+        metadata: 
+            labels:
+                project: kubernetes-project
+        spec:
+            containers:
+            - name: kubernetes-pod
+              imagePullPolicy: Always
+              ports:
+              - containerPort: 31111
+              image: ylin36/educative-io-usercode

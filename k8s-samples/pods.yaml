@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    name: kubernetes-pod
+    labels:
+        project: kubernetes-project
+spec:
+    containers:
+        - name: kubernetes-pod
+          image: ylin36/educative-io-usercode
+          ports: 
+            - containerPort: 31111
