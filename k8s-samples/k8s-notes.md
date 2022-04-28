@@ -1,4 +1,5 @@
-* Check number of nodes in the cluster
+## Sample k8s commands
+Check number of nodes in the cluster
 ```
 kubectl get nodes
 ```
@@ -33,6 +34,7 @@ Get service
 kubectl get service
 ```
 
+## Sample helm commands
 Download helm then install
 ```
 ./get_helm.sh
@@ -71,7 +73,70 @@ kubectl get service
 kubectl port-forward svc/your-service-name --address 0.0.0.0 31111:31111
 ```
 
+## Additional k8s beginner notes
 you can use regular portfoward to test a pod/deployment
 ```
+kubectl port-forwrd nginx 3001:80
+or
 kubectl port-forward --address 0.0.0.0 nginx 3000:80 
+```
+
+Streaming logs
+```
+kubectl logs --follow nginx
+               ^        
+               |        
+                ----------- tells kubectl to keep
+                            streaming the logs live,
+                            instead of just
+                            printing and exiting 
+```
+
+Executing commands
+```
+kubectl exec nginx -- ls
+```
+Enter interactive session and start bash session
+```
+kubectl exec -it nginx -- bash
+```
+Killing pod by name
+```
+kubectl delete pod nginx
+```
+Or kill it by sending the same manifest
+```
+kubectl delete -f nginx.yaml
+```
+
+MaxSurge (how many pods we can have exceeding our desired replica count
+and MaxUnavailable (how many pods we can have below this count) (absolute number or percent%). K8s will ensure during rollout minimum of x (desired - maxUnavailable) and maximum of y(desired + maxSurge) replicas.
+These help rolling release faster by doing more than 1 down 1 up at a time.
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hellok8s
+spec:
+  strategy:
+     rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  replicas: 3
+  selector...
+```
+
+Using recreate to take down all pods and bring up new version (cause downtime)
+```
+spec:
+  strategy:
+    type: Recreate
+  replicas: 3
+  selector:
+    matchLabels:
+```
+
+Rollback release with rollout undo deployment hellok8s
+```
+kubectl rollout undo deployment hellok8s
 ```
