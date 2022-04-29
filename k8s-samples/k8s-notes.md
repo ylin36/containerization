@@ -140,3 +140,41 @@ Rollback release with rollout undo deployment hellok8s
 ```
 kubectl rollout undo deployment hellok8s
 ```
+
+Use readiness probe to block bad deployments.
+have k8s consider this pod to only start receiving reqs after 5 successful
+responses from GET to path / on port 4567
+```
+        app: hellok8s
+    spec:
+      containers:
+      - image: brianstorti/hellok8s:v2 # Still using v2
+        name: hellok8s-container
+        readinessProbe: # New readiness probe
+          periodSeconds: 1
+          successThreshold: 5
+          httpGet:
+            path: /
+            port: 4567
+```
+
+livenessprobe works similar to readinessprobe, only diff is k8s
+will keep calling this probe periodically to make sure the pod is healthy.
+restart it in case it is not
+
+```
+    spec:
+      containers:
+      - image: brianstorti/hellok8s:v2
+        name: hellok8s-container
+        readinessProbe:
+          periodSeconds: 1
+          successThreshold: 5
+          httpGet:
+            path: /
+            port: 4567
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 4567
+```
