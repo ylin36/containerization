@@ -1,6 +1,11 @@
+## Install kubectl
+    install kubectl locally otherwise you have to use minikube's kubectl
+
+
 ## Create minikube cluster
     minikube start
     minikube dashboard
+
 
 ## Create a deployment
     kubectl create deployment hello-node --image=k8s.gcr.io/echoserver:1.4
