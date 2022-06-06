@@ -136,3 +136,40 @@ kubectl describe -f deploy/go-demo-2-api.yml
 kubectl rollout history -f deploy/go-demo-2-api.yml
 ```
 Since new deployments do no destroy ReplicaSets but scale them to 0, all it had to do to undo the last change was to scale it back to the desired number of replicas and, at the same time, scale the current one to zero.
+
+### 4.4.2 Update based on selectors
+```
+kubectl set image deployments \
+    -l type=db,vendor=MongoLabs \
+    db=mongo:3.4 --record
+```
+
+# 5. Scaling
+When scaling is frequent and, hopefully, automated, we cannot expect to update YAML definitions and push them to Git. That would be too inefficient and would probably cause quite a few unwanted executions of delivery pipelines if they are triggered through repository WebHooks. After all, do we really want to push updated YAML files multiple times a day?
+
+## 5.1 scaling with scale command
+```
+kubectl apply \
+    -f deploy/go-demo-2-scaled.yml
+
+kubectl get \
+    -f deploy/go-demo-2-scaled.yml
+
+...
+NAME                            READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/go-demo-2-api   5/5     5            5           3h26m
+...    
+```
+
+```
+kubectl scale deployment \
+    go-demo-2-api --replicas 8 --record
+
+kubectl get -f deploy/go-demo-2.yml
+
+NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/go-demo-2-db   1/1     1            1           4h40m
+
+NAME                            READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/go-demo-2-api   8/8     8            8           3h28m
+```
