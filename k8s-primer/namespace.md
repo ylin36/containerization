@@ -93,10 +93,13 @@ users:
     client-certificate: C:\Users\Yang\.minikube\profiles\minikube\client.crt
     client-key: C:\Users\Yang\.minikube\profiles\minikube\client.key
 ```
-all the kubectl commands will be executed within the context of the testing Namespace. That is, until we change the context again, or use the --namespace argument.
+
+Switch to newly created namespace
 ```
 kubectl config use-context testing
 ```
+all the kubectl commands will be executed within the context of the testing Namespace. That is, until we change the context again, or use the --namespace argument.
+
 
 # 4. Communication between namespace
 
@@ -121,4 +124,50 @@ kubectl delete ns testing
 kubectl -n testing get all
 
 No resources found in testing namespace.
+```
+
+# 6. Creating resource in namespace
+
+## 6.1 Creating in current active namespace
+Apply yaml to current active namespace. if non is explicitly made active, it runs in default ns.
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+  labels:
+    name: mypod
+spec:
+  containers:
+  - name: mypod
+    image: nginx
+```
+```
+kubectl apply -f pod.yaml
+```
+
+## 6.2 Creating in specified namespace
+
+specify the namespace
+
+```
+kubectl apply -f pod.yaml --namespace=test
+```
+
+## 6.3 Declaritively definiting a fixed namespace in yaml
+
+specify a namespace in the YAML declaration, the resource will always be created in that namespace. If you try to use the “namespace” flag to set another namespace, the command will fail.
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+  namespace: test
+  labels:
+    name: mypod
+spec:
+  containers:
+  - name: mypod
+    image: nginx
 ```
