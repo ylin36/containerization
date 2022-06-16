@@ -1,3 +1,15 @@
+- [1. Need for ingress](#1-need-for-ingress)
+  - [1.2 SSL Certs](#12-ssl-certs)
+- [2. Ingress controllers](#2-ingress-controllers)
+  - [2.1 Minikube's option](#21-minikubes-option)
+  - [2.2 yaml](#22-yaml)
+  - [2.3 Creating second ingress resource](#23-creating-second-ingress-resource)
+  - [2.4 Ingress domain on minikube](#24-ingress-domain-on-minikube)
+  - [2.5 Non-matching requests](#25-non-matching-requests)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # 1. Need for ingress 
 make all services accessible through standard HTTP (80) or HTTPS (443) ports. Kubernetes Services alone cannot get us there. We need more.
 

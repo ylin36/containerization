@@ -1,3 +1,23 @@
+- [1. Deployment](#1-deployment)
+- [2. How deployment detect change](#2-how-deployment-detect-change)
+- [3. Ways to update deployment](#3-ways-to-update-deployment)
+  - [3.1 Set image (good for CI/CD)](#31-set-image-good-for-cicd)
+  - [3.2 Edit image (not a good way at all. don't use this)](#32-edit-image-not-a-good-way-at-all-dont-use-this)
+- [4. Defining zero downtime deployment](#4-defining-zero-downtime-deployment)
+  - [4.1 Recreate strategy](#41-recreate-strategy)
+  - [4.2 Rolling update strategy](#42-rolling-update-strategy)
+    - [4.2.1 maxSurge (default 25%)](#421-maxsurge-default-25)
+    - [4.2.2 maxUnavailable (default 25%)](#422-maxunavailable-default-25)
+  - [4.3 view rollout status](#43-view-rollout-status)
+  - [4.4 Rolling back or Rolling forward](#44-rolling-back-or-rolling-forward)
+    - [4.4.1 Rolling back (Discouraged)](#441-rolling-back-discouraged)
+    - [4.4.2 Update based on selectors](#442-update-based-on-selectors)
+- [5. Scaling](#5-scaling)
+  - [5.1 scaling with scale command](#51-scaling-with-scale-command)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # 1. Deployment
 
 Deployments create replicasets which in term create pods

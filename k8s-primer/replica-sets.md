@@ -1,3 +1,14 @@
+- [1. ReplicaSets Purpose](#1-replicasets-purpose)
+- [2. Definiting replica set yaml](#2-definiting-replica-set-yaml)
+- [3. Delete replica set](#3-delete-replica-set)
+  * [3.1 Delete replica set and its associated pods](#31-delete-replica-set-and-its-associated-pods)
+  * [3.2 Delete replica set and not its associated pods](#32-delete-replica-set-and-not-its-associated-pods)
+  * [3.3 Reattach the pods with the same rs](#33-reattach-the-pods-with-the-same-rs)
+  * [3.4 Modifying pod label matches](#34-modifying-pod-label-matches)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # 1. ReplicaSets Purpose
 Ensure the specified number of replicas of a service are always running
 

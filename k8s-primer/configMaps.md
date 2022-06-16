@@ -1,3 +1,18 @@
+- [1. Configuration ways](#1-configuration-ways)
+  - [1.1 Environment variables vs Files (Yaml)](#11-environment-variables-vs-files-yaml)
+  - [1.2 ConfigMap](#12-configmap)
+    - [1.2.1 Mounting config map AS A FILE](#121-mounting-config-map-as-a-file)
+    - [1.2.2 Creating ConfigMap from multiple files](#122-creating-configmap-from-multiple-files)
+    - [1.2.2 Injecting config from key-value literals](#122-injecting-config-from-key-value-literals)
+    - [1.2.3 Injecting conf from environment files](#123-injecting-conf-from-environment-files)
+- [3. Using ConfigMap as Environment variable for pods](#3-using-configmap-as-environment-variable-for-pods)
+- [3.1 configMapKefRef Way](#31-configmapkefref-way)
+- [3.2 configMapRef Way](#32-configmapref-way)
+- [4. Defining configmap as yaml and using it](#4-defining-configmap-as-yaml-and-using-it)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # 1. Configuration ways
 ## 1.1 Environment variables vs Files (Yaml)
 fit well into distributed systems; easy to define, portable; ideal choice for configuration mechanism of new applications.

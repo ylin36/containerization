@@ -1,3 +1,22 @@
+- [1. Namespaces intro](#1-namespaces-intro)
+  - [1.1 Kubectl get all](#11-kubectl-get-all)
+  - [1.2 Virtual clusters](#12-virtual-clusters)
+  - [1.3 Default namespace](#13-default-namespace)
+- [1.4 Get existing namespace](#14-get-existing-namespace)
+- [2. Creating namespace](#2-creating-namespace)
+  - [2.1 Specify namespace](#21-specify-namespace)
+  - [2.2 creating namespace](#22-creating-namespace)
+- [3. Change context to new namespace](#3-change-context-to-new-namespace)
+- [4. Communication between namespace](#4-communication-between-namespace)
+- [5. Cascade delete Namespace (everything in it)](#5-cascade-delete-namespace-everything-in-it)
+- [6. Creating resource in namespace](#6-creating-resource-in-namespace)
+  - [6.1 Creating in current active namespace](#61-creating-in-current-active-namespace)
+  - [6.2 Creating in specified namespace](#62-creating-in-specified-namespace)
+  - [6.3 Declaritively definiting a fixed namespace in yaml](#63-declaritively-definiting-a-fixed-namespace-in-yaml)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # 1. Namespaces intro
 Segments the cluster. Namespaces are virtual clusters.
 

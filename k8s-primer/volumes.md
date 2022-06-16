@@ -1,3 +1,19 @@
+- [1. Volume use cases](#1-volume-use-cases)
+  - [1.1 minikube example](#11-minikube-example)
+  - [1.2 Creating a Pod with Docker Image#](#12-creating-a-pod-with-docker-image)
+  - [1.2.1 Pod with hostpath](#121-pod-with-hostpath)
+  - [1.2.2 volume types](#122-volume-types)
+  - [1.2.3 creating](#123-creating)
+  - [1.2.4 playing with docker](#124-playing-with-docker)
+  - [1.3 Prometheus example](#13-prometheus-example)
+    - [1.3.1 don't use hostPath for config](#131-dont-use-hostpath-for-config)
+  - [1.4 volume type: gitRepo](#14-volume-type-gitrepo)
+- [2. Deploying Jenkins (no persistence)](#2-deploying-jenkins-no-persistence)
+  - [2.1 Deploying Jenkins with emptyDir](#21-deploying-jenkins-with-emptydir)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # 1. Volume use cases
 Kubernetes Volumes solve the need to preserve the state across container crashes. In essence, Volumes are references to files and directories made accessible to containers that form a Pod. The significant difference between different types of Kubernetes Volumes is in the way these files and directories are created.
 

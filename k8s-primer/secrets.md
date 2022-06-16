@@ -1,3 +1,14 @@
+- [1. Intro](#1-intro)
+- [2. Built in secrets](#2-built-in-secrets)
+- [3. Decoding secrets](#3-decoding-secrets)
+- [4. Mounting secrets](#4-mounting-secrets)
+- [5. Only diff from ConfigMap (Secrets are in Temp file storage)](#5-only-diff-from-configmap-secrets-are-in-temp-file-storage)
+- [6. Insecurities of secrets](#6-insecurities-of-secrets)
+  - [6.1 How to secure?](#61-how-to-secure)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # 1. Intro
 A Secret is a relatively small amount of sensitive data. Some of the typical candidates for Secrets would be passwords, tokens, and SSH keys.
 

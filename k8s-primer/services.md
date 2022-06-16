@@ -1,3 +1,13 @@
+- [1. Exposing service imperively [Example exposing NodePort]](#1-exposing-service-imperively--example-exposing-nodeport-)
+- [2. Create service declaratively](#2-create-service-declaratively)
+- [3. Request forwarding](#3-request-forwarding)
+- [4. Container Readiness used with services](#4-container-readiness-used-with-services)
+- [5. Service types](#5-service-types)
+- [6. Service Discovery](#6-service-discovery)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # 1. Exposing service imperively [Example exposing NodePort]
 
 sample RS

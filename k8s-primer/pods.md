@@ -1,3 +1,18 @@
+- [1. Dirty way to spin up cluster](#1-dirty-way-to-spin-up-cluster)
+  - [1.1 Spin up pod like it's docker](#11-spin-up-pod-like-its-docker)
+  - [1.2 Delete the pod](#12-delete-the-pod)
+- [2. Pods](#2-pods)
+  - [2.1 Get more details about the pod](#21-get-more-details-about-the-pod)
+  - [2.2 (informational) sequence of events after applying the pod yaml](#22-informational-sequence-of-events-after-applying-the-pod-yaml)
+  - [2.3 Executing process inside a Pod's container](#23-executing-process-inside-a-pods-container)
+  - [2.4 Get logs of a pod](#24-get-logs-of-a-pod)
+  - [2.5 Delete the pod](#25-delete-the-pod)
+  - [2.6 Communication within pod](#26-communication-within-pod)
+  - [2.7 Health Monitor](#27-health-monitor)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # 1. Dirty way to spin up cluster
 ## 1.1 Spin up pod like it's docker 
 ```

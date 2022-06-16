@@ -1,3 +1,16 @@
+- [1. Need to Authentication and Authorization](#1-need-to-authentication-and-authorization)
+  - [1.2 API](#12-api)
+  - [1.3 Port](#13-port)
+  - [1.4 API process](#14-api-process)
+    - [1.4.1 Authentication](#141-authentication)
+    - [1.4.2 Authorization](#142-authorization)
+    - [1.4.3 Passing the admin control](#143-passing-the-admin-control)
+      - [1.4.3.1 Why admin control](#1431-why-admin-control)
+- [2. Authorization methods](#2-authorization-methods)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # 1. Need to Authentication and Authorization
 ## 1.2 API
 Every interaction with Kubernetes goes through its API and needs to be authorized. 
