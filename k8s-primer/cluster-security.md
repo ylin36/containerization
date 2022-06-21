@@ -7,6 +7,16 @@
     - [1.4.3 Passing the admin control](#143-passing-the-admin-control)
       - [1.4.3.1 Why admin control](#1431-why-admin-control)
 - [2. Authorization methods](#2-authorization-methods)
+  - [2.1 Demo](#21-demo)
+    - [2.1.1 start cluster and create some demo resources](#211-start-cluster-and-create-some-demo-resources)
+    - [2.1.2 use openssl to generate a rsa private key](#212-use-openssl-to-generate-a-rsa-private-key)
+    - [2.1.3 use private key to generate a csr](#213-use-private-key-to-generate-a-csr)
+    - [2.1.4 use minikube cluster ca to sign the csr.](#214-use-minikube-cluster-ca-to-sign-the-csr)
+    - [2.1.5 Authenticating as jdoe](#215-authenticating-as-jdoe)
+      - [2.1.5.1 create new cluster connection against server called jdoe](#2151-create-new-cluster-connection-against-server-called-jdoe)
+      - [2.1.5.2 set credentials](#2152-set-credentials)
+      - [2.1.5.3 set context](#2153-set-context)
+      - [2.1.5.4 authorization](#2154-authorization)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -80,3 +90,103 @@ ABAC: Attribute-based access control (ABAC) is based on attributes combined with
 Webhooks: Webhooks are used for event notifications through HTTP POST requests.
 
 RBAC (the go to): Role-based access control (RBAC) grants (or denies) access to resources based on roles of individual users or groups.
+
+## 2.1 Demo
+### 2.1.1 start cluster and create some demo resources
+```
+minikube start
+
+kubectl create \
+    -f auth/go-demo-2.yml \
+    --record --save-config
+```
+### 2.1.2 use openssl to generate a rsa private key
+```
+openssl version
+
+mkdir keys
+openssl genrsa -out keys/jdoe.key 2048
+```
+### 2.1.3 use private key to generate a csr
+windows bash use this
+```
+openssl req -new -key keys/jdoe.key -out keys/jdoe.csr -subj "//CN=jdoe\O=devs"
+```
+linux use
+```
+openssl req -new -key keys/jdoe.key -out keys/jdoe.csr -subj "/CN=jdoe/O=devs"
+``` 
+### 2.1.4 use minikube cluster ca to sign the csr.
+
+confirm the cluster ca is all there.
+```
+ls -1 ~/.minikube/ca.*
+
+----this should show----
+/c/Users/Yang/.minikube/ca.crt
+/c/Users/Yang/.minikube/ca.key
+/c/Users/Yang/.minikube/ca.pem
+```
+sign the csr. for this demo, make the cert valid for a year
+```
+openssl x509 -req \
+    -in keys/jdoe.csr \
+    -CA ~/.minikube/ca.crt \
+    -CAkey ~/.minikube/ca.key \
+    -CAcreateserial \
+    -out keys/jdoe.crt \
+    -days 365
+```
+to simply things, copy the cluster ca to the keys folder, too
+```
+cp ~/.minikube/ca.crt keys/ca.crt
+```
+get address of the server
+```
+SERVER=$(kubectl config view \
+    -o jsonpath='{.clusters[?(@.name=="minikube")].cluster.server}')
+
+echo $SERVER
+```
+
+### 2.1.5 Authenticating as jdoe
+This is kind of like opposite of https.
+
+you give the crt to k8s cluster. they check that it was signed by the CA, and validate it. Take the public key and encrypt messages.
+
+private key at jdoe will decrypt it.
+
+....
+
+
+copy keys folder to the same partition as the .kube folder before running below
+
+#### 2.1.5.1 create new cluster connection against server called jdoe
+I think using the ca cert here makes it so you are trusting the server for ssl calls.
+```
+kubectl config set-cluster jdoe     --certificate-authority     c:/Users/Yang/keys/ca.crt     --server $SERVER
+```
+#### 2.1.5.2 set credentials
+```
+kubectl config set-credentials jdoe --client-certificate c:/Users/Yang/keys/jdoe.crt --client-key c:/Users/Yang/keys/jdoe.key
+```
+
+#### 2.1.5.3 set context
+set context to use cluster jdoe and authenticate with user jdoe
+```
+kubectl config set-context jdoe \
+    --cluster jdoe \
+    --user jdoe
+```
+use context
+```
+kubectl config use-context jdoe
+```
+
+#### 2.1.5.4 authorization
+without authorization, it will fail
+```
+kubectl get pods
+
+Error from server (Forbidden): pods is forbidden: User "jdoe" cannot list resource "pods" in API group "" in the namespace "default"
+```
