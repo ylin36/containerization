@@ -1,3 +1,22 @@
+- [1. Default on opening terminal](#1-default-on-opening-terminal)
+- [2. Path types](#2-path-types)
+  - [2.1 Absolute path](#21-absolute-path)
+  - [2.2 Relative path](#22-relative-path)
+- [3. Symbolic links](#3-symbolic-links)
+  - [3.1 inode](#31-inode)
+  - [3.2 Symbolic link vs hardlink](#32-symbolic-link-vs-hardlink)
+- [4 Check current directory](#4-check-current-directory)
+  - [4.1 Print all locations containing an executable](#41-print-all-locations-containing-an-executable)
+  - [4.2 cd options](#42-cd-options)
+  - [4.3 Display files in a directory](#43-display-files-in-a-directory)
+- [5. Creating directory](#5-creating-directory)
+- [6. Removing directory](#6-removing-directory)
+  - [6.1 Remove empty directories](#61-remove-empty-directories)
+  - [6.2 removing directory with files in it](#62-removing-directory-with-files-in-it)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # 1. Default on opening terminal
 When opening a terminal, by default it opens to your "home" folder which is typically "current directory"
 

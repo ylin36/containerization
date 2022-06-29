@@ -1,3 +1,10 @@
+- [Types of permissions](#types-of-permissions)
+- [Modes](#modes)
+- [Chmod (change mode)](#chmod-change-mode)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # Types of permissions
 * read
 * write

@@ -1,3 +1,20 @@
+- [1. Run terminal](#1-run-terminal)
+- [2. Hot keys](#2-hot-keys)
+- [3. Special characters](#3-special-characters)
+- [4. Exiting terminal](#4-exiting-terminal)
+- [5. General command syntax](#5-general-command-syntax)
+- [6. Manual](#6-manual)
+- [7. System date a time](#7-system-date-a-time)
+  - [7.1 get date](#71-get-date)
+  - [7.2 set system date](#72-set-system-date)
+- [8. Commonly used commands](#8-commonly-used-commands)
+  - [8.1 Echo](#81-echo)
+  - [8.2 Clear](#82-clear)
+  - [8.3 Sleep](#83-sleep)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # 1. Run terminal
 ```
 ctrl alt t

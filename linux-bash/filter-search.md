@@ -1,3 +1,18 @@
+- [1. Locate (must faster than find)](#1-locate-must-faster-than-find)
+- [2. Find](#2-find)
+- [3. Sort](#3-sort)
+- [4. Head](#4-head)
+- [5. Tail](#5-tail)
+- [6. Uniq](#6-uniq)
+- [7. Regex](#7-regex)
+- [8. grep, egrep, fgrep](#8-grep-egrep-fgrep)
+  - [8.1 grep (global regular expression print)](#81-grep-global-regular-expression-print)
+  - [8.2 egrep (extended global regular expression print) [extended regex]](#82-egrep-extended-global-regular-expression-print-extended-regex)
+  - [8.3 fgrep (fixed strings grep) [no regex]](#83-fgrep-fixed-strings-grep-no-regex)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # 1. Locate (must faster than find)
 quick way to search for the locations of files and directories.
 

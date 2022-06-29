@@ -1,3 +1,19 @@
+- [1. Types of Shell](#1-types-of-shell)
+  - [1.1 Bourne Shell](#11-bourne-shell)
+  - [1.2 C shell](#12-c-shell)
+- [2. Typical example of shell programmping](#2-typical-example-of-shell-programmping)
+- [3. Linux](#3-linux)
+- [4. Shell classification](#4-shell-classification)
+  - [4.1 Commandline shell](#41-commandline-shell)
+  - [4.2 Graphical shell](#42-graphical-shell)
+- [5. Linux shell](#5-linux-shell)
+- [6. Find metadata about shell](#6-find-metadata-about-shell)
+- [7. Command use of bash](#7-command-use-of-bash)
+- [8. Do not use bash for](#8-do-not-use-bash-for)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # 1. Types of Shell
 ## 1.1 Bourne Shell
 default prompt is # character

@@ -1,3 +1,17 @@
+- [1. Creating file](#1-creating-file)
+- [2. Word count](#2-word-count)
+- [3. Concatenation](#3-concatenation)
+  - [3.1 concatenation](#31-concatenation)
+  - [3.2 read new files](#32-read-new-files)
+  - [3.3 new file creation](#33-new-file-creation)
+- [4. Remove file](#4-remove-file)
+- [5. Move file to directory OR rename file](#5-move-file-to-directory-or-rename-file)
+- [6. Copy file](#6-copy-file)
+- [7. Ziping file](#7-ziping-file)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # 1. Creating file
 ```
 touch [option] [file_name(s)]
