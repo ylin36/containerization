@@ -111,3 +111,86 @@ option|desc
 -v (verbose)	|It causes tail to print the file name even if there is just a single input file.
 
 # 6. Uniq
+filter and view multiple repeatable lines
+```
+uniq [option] [input[output]]
+```
+
+option|desc
+|-|-|
+-c	|Prefix lines with a number showing how many times they occurred.
+-d	|Only print duplicated lines.
+-u	|Only print unique lines.
+-z	|End lines with 0 byte (NULL), instead of a newline.
+-w	|Compare no more than N characters in lines.
+-i	|To perform case-insensitive comparisons.
+-f	|To avoid comparing first N fields of a line before determining uniqueness. (Field is a set of characters delimeted by a white space.)
+-s	|To avoid comparing first N characters before determining uniqueness.
+
+```
+uniq hellocopy.txt
+```
+
+can also use in pipe
+```
+sort hellocopy.txt | uniq
+```
+
+# 7. Regex
+|operator|desc|
+|-|-|
+\?	|The preceding item is optional and matched at most once.
+\*	|The preceding item will be matched zero or more times.
+\+	|The preceding item will be matched one or more times.
+\{n}	|The preceding item is matched exactly n times.
+\{n,}	|The preceding item is matched n or more times.
+\{n,m}	|The preceding item is matched at least n times, but not more than m times.
+\$	|Matches the end of the line.
+\^	|Matches the beginning of the line.
+\( )	|Allows us to group several characters to behave as one.
+\|	|Its the logical OR operation.
+\.	|A single character.
+\[agd]	|The character is one of those included within the square brackets.
+\[^agd]	|The character is not one of those included within the square brackets.
+\[a-d]	|The dash within the square brackets operates as a range. Here, it means all characters between a and d, including “a” and “d”.
+
+# 8. grep, egrep, fgrep
+## 8.1 grep (global regular expression print)
+grep [option(s)] pattern [file(s)]
+
+// the brackets above are optional
+```
+// can do either
+1) cat filename | grep regex
+
+2) grep regex filename
+```
+|option|desc|
+|-|-|
+Option	Description
+-E |(extended regexp)	Causes grep to behave like egrep.
+-F |(fixed strings)	Causes grep to behave like fgrep.
+-G |(basic regexp)	Causes grep, egrep, or fgrep to behave like the standard grep utility.
+-r	|To search recursively through an entire directory tree (i.e., a directory and all levels of subdirectories within it)
+-I	|Process a binary file as if it did not contain matching data.
+-c|	To report the number of times that the pattern has been matched for each file and to not display the actual lines.
+-n	|To precede each line of output with the number of the line in the text file from which it was obtained.
+-v	|It matches only those lines that do not contain the given pattern.
+-w	|To select only those lines that contain an entire word or phrase that matches the specified pattern.
+-x	|To select only those lines that match exactly the specified pattern.
+-l	|To not return the lines containing matches but to only return only the names of the files that contain matches.
+-L	|It is the opposite of the -l option (and analogous to the -v option) i.e. it will cause grep to return only the names of files that do not contain the specified pattern.
+
+## 8.2 egrep (extended global regular expression print) [extended regex]
+```
+grep -E is same as egrep
+
+takes same options too
+```
+
+## 8.3 fgrep (fixed strings grep) [no regex]
+used to interpret pattern as a list of fixed strings (the whole string is interpreted literally), separated by new lines, Hence, *regular expressions can’t be used*.
+
+```
+fgrep -n "Teststring" file.txt
+```
