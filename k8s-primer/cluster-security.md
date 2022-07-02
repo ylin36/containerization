@@ -17,6 +17,12 @@
       - [2.1.5.2 set credentials](#2152-set-credentials)
       - [2.1.5.3 set context](#2153-set-context)
       - [2.1.5.4 authorization](#2154-authorization)
+- [3. RBAC Authority](#3-rbac-authority)
+  - [3.1 Rules](#31-rules)
+  - [3.2 Roles](#32-roles)
+  - [3.3 Subject](#33-subject)
+  - [3.4 RoleBinding](#34-rolebinding)
+- [4. Check if someone else' user account can do things](#4-check-if-someone-else-user-account-can-do-things)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -189,4 +195,42 @@ without authorization, it will fail
 kubectl get pods
 
 Error from server (Forbidden): pods is forbidden: User "jdoe" cannot list resource "pods" in API group "" in the namespace "default"
+```
+# 3. RBAC Authority
+
+## 3.1 Rules
+A Rule is a set of operations (verbs), resources, and API groups. 
+
+permissions defined are additive. some rules cannot be excluded
+
+Verbs describe activities that can be performed on resources which belong to different API Groups.
+rule|desc
+|-|-|
+get	|Retrieves information about a specific object
+list	|Retrieves information about a collection of objects
+create	|Creates a specific object
+update	|Updates a specific object
+patch	|Patches a specific object
+watch|Watches for changes to an object
+proxy	|Proxies requests
+redirect	|Redirects requests
+delete	|Deletes a specific object
+deletecollection	|Deletes a collection of objects
+
+## 3.2 Roles
+There are by default some pre-defined cluster roles
+
+A Role is a collection of Rules. It defines one or more Rules that can be bound to a user or a group of users.
+
+## 3.3 Subject
+Subjects define entities that are executing operations. A Subject can be a User, a Group, or a Service Account.
+
+A User is a person or a process residing outside a cluster. A Service Account is used for processes running inside Pods that want to use the API. Since this chapter focuses on human authentication, we won’t explore them right now. Finally, Groups are collections of Users or Service Accounts. Some Groups are created by default (e.g., cluster-admin).
+
+## 3.4 RoleBinding
+bind Subjects to Roles.
+
+# 4. Check if someone else' user account can do things
+```
+kubectl auth can-i get pods --as otheruser
 ```
