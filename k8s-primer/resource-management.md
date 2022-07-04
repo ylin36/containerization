@@ -97,3 +97,62 @@ spec:
       cpu: 0.01
     type: Container
 ```
+The default limit and defaultRequest entries will be applied to the containers that do not specify resources.
+
+When a container does have the resources defined, they will be evaluated against LimitRange thresholds specified as max and min.
+
+# 6. Resource Quota (hard boundry)
+define the total amount of compute resources (memory and CPU) that can be spent in a *Namespace*.  
+
+```
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
+
+---
+
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: dev
+  namespace: dev
+spec:
+  hard:
+    requests.cpu: 0.8
+    requests.memory: 500Mi
+    limits.cpu: 1
+    limits.memory: 1Gi
+    pods: 10
+    services.nodeports: "0"
+```
+
+resource|desc
+|-|-|
+cpu	|Across all pods in a non-terminal state, the sum of CPU requests cannot exceed this value.
+limits.cpu	|Across all pods in a non-terminal state, the sum of CPU limits cannot exceed this value.
+limits.memory	|Across all pods in a non-terminal state, the sum of memory limits cannot exceed this value.
+memory	|Across all pods in a non-terminal state, the sum of memory requests cannot exceed this value.
+requests.cpu	|Across all pods in a non-terminal state, the sum of CPU requests cannot exceed this value.
+requests.memory	|Across all pods in a non-terminal state, the sum of memory requests cannot exceed this value.
+
+storage resource|desc
+|-|-|
+requests.storage	|Across all persistent volume claims, the sum of storage requests cannot exceed this value.
+persistentvolumeclaims	|The total number of persistent volume claims that can exist in the namespace.
+[PREFIX]/requests.storage	|Across all persistent volume claims associated with the storage-class-name, the sum of storage requests cannot exceed this value.
+[PREFIX]/persistentvolumeclaims	|Across all persistent volume claims associated with the storage-class-name, the total number of persistent volume claims that can exist in the namespace.
+requests.ephemeral-storage	|Across all pods in the namespace, the sum of local ephemeral storage requests cannot exceed this value.
+limits.ephemeral-storage	|Across all pods in the namespace, the sum of local ephemeral storage limits cannot exceed this value.
+
+|object count quota|desc|
+-|-
+configmaps	|The total number of config maps that can exist in the namespace.
+persistentvolumeclaims	|The total number of persistent volume claims that can exist in the namespace.
+pods	|The total number of pods in a non-terminal state that can exist in the namespace. A pod is in a terminal state if status.phase in (Failed, Succeeded) is true.
+replicationcontrollers	|The total number of replication controllers that can exist in the namespace.
+resourcequotas	|The total number of resource quotas that can exist in the namespace.
+services	|The total number of services that can exist in the namespace.
+services.loadbalancers	|The total number of services of type load balancer that can exist in the namespace.
+services.nodeports	|The total number of services of type node port that can exist in the namespace.
+secrets	|The total number of secrets that can exist in the namespace.

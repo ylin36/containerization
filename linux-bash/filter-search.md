@@ -171,6 +171,9 @@ sort hellocopy.txt | uniq
 
 # 8. grep, egrep, fgrep
 ## 8.1 grep (global regular expression print)
+
+The grep command can search for a string in groups of files. When it finds a pattern that matches in more than one file, it prints the name of the file, followed by a colon, then the line matching the pattern.
+
 grep [option(s)] pattern [file(s)]
 
 // the brackets above are optional
